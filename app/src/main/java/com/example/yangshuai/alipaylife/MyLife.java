@@ -44,7 +44,7 @@ public class MyLife extends AccessibilityService {
             btnPerformClick(nodeInfo);
         } else if ((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("注意扫描的角度和距离哦")) != null && (nextBtn.size() > 0)) {
             Log.i("Life", "注意扫描的角度和距离哦");
-            btnPerformClick(nextBtn);
+            btnPerformClick(nodeInfo);
         } else if ((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("本次扫描没有结果")) != null && (nextBtn.size() > 0)) {
             Log.i("Life", "本次扫描没有结果");
             btnPerformClick(nodeInfo);
