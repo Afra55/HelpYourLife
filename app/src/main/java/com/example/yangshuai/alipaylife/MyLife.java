@@ -62,7 +62,11 @@ public class MyLife extends AccessibilityService {
             toClickAView(nodeInfo.getParent());
         } else
             toClickAView(nodeInfo);
-        nodeInfo.recycle();
+        try {
+            nodeInfo.recycle();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         clicking = false;
         return false;
     }
