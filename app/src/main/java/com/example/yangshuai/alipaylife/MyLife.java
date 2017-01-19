@@ -50,8 +50,8 @@ public class MyLife extends AccessibilityService {
             Log.i("Life", "本次扫描没有结果");
             btnPerformClick(nextBtn);
             btnPerformClick(nodeInfo);
-        }else if ((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("本次扫描没有结果")) != null && (nextBtn.size() > 0)) {
-            Log.i("Life", "人气太旺了,稍后再试试");
+        }else if ((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("人气太旺啦，稍后再试试")) != null && (nextBtn.size() > 0)) {
+            Log.i("Life", "人气太旺啦，稍后再试试");
             btnPerformClick(nextBtn);
             btnPerformClick(nodeInfo);
         } else if ((((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("再试一次")) != null)
