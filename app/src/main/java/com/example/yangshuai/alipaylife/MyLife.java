@@ -91,6 +91,7 @@ public class MyLife extends AccessibilityService {
             if (child.isClickable()) {
                 Log.i("Life", nodeInfo.toString());
                 child.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                child.recycle();
                 break;
             }
 
@@ -98,7 +99,6 @@ public class MyLife extends AccessibilityService {
                 toClickAView(child);
                 break;
             }
-
 
         }
         nodeInfo.recycle();
