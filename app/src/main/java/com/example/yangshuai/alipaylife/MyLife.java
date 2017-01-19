@@ -40,14 +40,24 @@ public class MyLife extends AccessibilityService {
         if ((((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("点击重试")) != null)
                 && (nextBtn.size() > 0))) {
             Log.i("Life", "点击重试");
-//            performGlobalAction(AccessibilityService.GESTURE_SWIPE_LEFT_AND_UP);
+            btnPerformClick(nextBtn);
             btnPerformClick(nodeInfo);
         } else if ((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("注意扫描的角度和距离哦")) != null && (nextBtn.size() > 0)) {
             Log.i("Life", "注意扫描的角度和距离哦");
+            btnPerformClick(nextBtn);
             btnPerformClick(nodeInfo);
         } else if ((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("本次扫描没有结果")) != null && (nextBtn.size() > 0)) {
             Log.i("Life", "本次扫描没有结果");
+            btnPerformClick(nextBtn);
             btnPerformClick(nodeInfo);
+        }else if ((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("本次扫描没有结果")) != null && (nextBtn.size() > 0)) {
+            Log.i("Life", "人气太旺了,稍后再试试");
+            btnPerformClick(nextBtn);
+            btnPerformClick(nodeInfo);
+        } else if ((((nextBtn = nodeInfo.findAccessibilityNodeInfosByText("再试一次")) != null)
+                && (nextBtn.size() > 0))) {
+            Log.i("Life", "点击重试");
+            btnPerformClick(nextBtn);
         }
     }
 
@@ -74,10 +84,22 @@ public class MyLife extends AccessibilityService {
     private void toClickAView(final AccessibilityNodeInfo nodeInfo) {
         for (int i = 0; i < nodeInfo.getChildCount(); i++) {
             final AccessibilityNodeInfo child = nodeInfo.getChild(i);
-            if (child != null && child.isClickable()) {
+            if (child == null) {
+                continue;
+            }
+
+            if (child.isClickable()) {
+                Log.i("Life", nodeInfo.toString());
                 child.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                 break;
             }
+
+            if (child.getChildCount() > 0) {
+                toClickAView(child);
+                break;
+            }
+
+
         }
         nodeInfo.recycle();
     }
